@@ -92,6 +92,17 @@ public abstract class TimeLine_AbstractFragment extends Fragment implements  OnR
 		progress.setVisibility(View.VISIBLE);
 		pullListView = (PullToRefreshListView) view.findViewById(R.id.listViewCheckBoxFEATURES);
 		listView = pullListView.getRefreshableView();
+
+
+		if (savedInstanceState != null){
+			Parcelable[] parcelableArray =	savedInstanceState.getParcelableArray(WPOST_ARRAY);
+			if (parcelableArray != null) {
+				mListWpostItems = Arrays.copyOf(parcelableArray, parcelableArray.length, WPost[].class);
+				noMoreMessages = savedInstanceState.getBoolean(NO_MORE_MESSAGES);
+			}
+			password = savedInstanceState.getString(Preferences.PASSWORD);  
+		}
+
 		return view;
 	}
 
